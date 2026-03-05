@@ -11,7 +11,6 @@ export async function GET(req: Request) {
 
     const apiKey = process.env.OMDB_API_KEY;
 
-    // Checks if the user entered an IMDb ID (starts with 'tt') or a regular title
     const searchParam = query.trim().startsWith("tt") ? `i=${query.trim()}` : `t=${query.trim()}`;
 
     const res = await fetch(
@@ -39,12 +38,10 @@ export async function GET(req: Request) {
 
     const rating = parseFloat(data.imdbRating);
     
-    // Overall sentiment classification (Positive / Mixed / Negative)
     let sentiment = "Mixed"; 
     if (rating >= 7.0) sentiment = "Positive";
     else if (rating <= 5.5) sentiment = "Negative";
 
-    // AI Summary of audience sentiment
     const aiSummary = `Based on an analysis of audience feedback and the IMDb rating of ${data.imdbRating}/10, the overall consensus is ${sentiment.toLowerCase()}. Viewers generally highlighted aspects of the film's narrative—specifically involving ${data.Plot ? data.Plot.substring(0, 60).toLowerCase() : 'the main storyline'}...—as a key driver of their sentiment.`;
 
     return NextResponse.json({
