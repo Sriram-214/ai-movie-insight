@@ -24,7 +24,7 @@ export default function Home() {
       ? "#22c55e"
       : result?.sentiment === "Negative"
       ? "#ef4444"
-      : "#f59e0b"; // For Mixed/Neutral
+      : "#f59e0b";
 
   return (
     <div className="page">
@@ -50,7 +50,6 @@ export default function Home() {
             }}
           />
 
-          {/* CHANGED BACK TO SEARCH */}
           <button onClick={searchMovie}>Search</button>
 
         </div>
@@ -85,7 +84,6 @@ export default function Home() {
 
               </div>
 
-              {/* AI SUMMARY SECTION */}
               <div className="ai-insight">
                 <h3>🤖 AI Audience Insight</h3>
                 <p>{result.aiSummary}</p>
